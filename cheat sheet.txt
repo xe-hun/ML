@@ -14,3 +14,5 @@ ssh config file for git, this file need to be created in .ssh in case of authent
 Host github.com
  Hostname github.com
  IdentityFile ~/.ssh/id_rsa
+
+ chmod 600 ~/.ssh/id_rsa
