@@ -26,7 +26,7 @@ class Agent():
                         
         return stateSpace
 
-    def getState(self, observation):
+    def getState(self, observation:tuple)->tuple:
         cartPosition, cartVelocity, poleAngle, poleAngleVelocity = observation
         cartPosition = np.digitize(cartPosition, self.cartPositionSpace[:-1], True)
         cartVelocity = np.digitize(cartVelocity, self.cartVelocitySpace[:-1], True)
@@ -36,5 +36,9 @@ class Agent():
         return (cartPosition, cartVelocity, poleAngle, poleAngleVelocity)
         
 
-    def select_action(self, state, policy_net):
-       pass
+    def selectAction(self, state:tuple, policy, explorationRate:float)->int:
+        if(explorationRate != None):
+            return policy.getActionWithStrategy(explorationRate, state)
+        else:
+            return policy.getAction(state)
+   
