@@ -14,7 +14,7 @@ class Policy:
         return self.Q
     
     def getMaxAction(self, state)->int:
-        return np.argmax(self.Q[state])
+        return self.randomTieBreakArgmax(self.Q[state])
     
     def getRandomAction(self)->int:
         return random.randrange(self.actionSpaceSize);
@@ -26,24 +26,44 @@ class Policy:
         else:
             return self.getMaxAction(state)
     
-    def train(self, currentState:tuple, nextState:tuple, reward:int, action:int):
+    def train(self, currentState:int, nextState:int, reward:int, action:int):
         if(currentState == nextState):
             return
         
         alpha = .01 #learningRate
         gamma = .9 #discountFactor
         qsetter = self.Q[currentState][action] + alpha * (reward + gamma * max(self.Q[nextState]) - self.Q[currentState][action])
+        # if(reward > 0):
+        #     print(qsetter)
         self.Q[currentState][action] = qsetter
         
+
+    def randomTieBreakArgmax(self, arr):
     
-    # def updateQValue(self):
-    #     pass
-    
-    
-    # # def train(sel):
-    
-    # def getQValue(self, state):
-    #     # if(self.Q == None) 
-    #     # then you must initialize q value first
-    #     return self.Q[state]
+        max_value = max(arr)
+        # Find indices of all elements equal to the maximum value
+        max_indices = [i for i, x in enumerate(arr) if x == max_value]
+
+        # If there's only one maximum, return its index directly
+        if len(max_indices) == 1:
+            return max_indices[0]
+
+        # Randomly choose one index from the tie
+        random_index = random.choice(max_indices)
+        return random_index
         
+        
+            # def randomTieBreakArgmax(self, arr):
+ 
+    #     # Find the maximum value(s)
+    #     max_value = arr.max()
+    #     # Find indices of all elements equal to the maximum value
+    #     max_indices = np.flatnonzero(arr == max_value)
+
+    #     # If there's only one maximum, return its index directly
+    #     if len(max_indices) == 1:
+    #         return max_indices[0]
+
+    #     # Randomly choose one index from the tie
+    #     random_index = np.random.choice(max_indices)
+    #     return random_index

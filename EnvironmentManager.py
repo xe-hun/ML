@@ -7,9 +7,9 @@ import gymnasium as gym
 class EnvironmentManager:
     def __init__(self, render=False):
         if render is True:
-            self.env = gym.make('FrozenLake-v1', desc=None, map_name="4x4", is_slippery=False, render_mode = 'human')
+            self.env = gym.make('FrozenLake-v1', desc=None, map_name="8x8", is_slippery=False, render_mode = 'human')
         else:
-            self.env = gym.make('FrozenLake-v1', desc=None, map_name="4x4", is_slippery=False)
+            self.env = gym.make('FrozenLake-v1', desc=None, map_name="8x8", is_slippery=False)
 
 
         
