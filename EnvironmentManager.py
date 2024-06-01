@@ -7,11 +7,15 @@ import gymnasium as gym
 class EnvironmentManager:
     def __init__(self, render=False):
         if render is True:
-            self.env = gym.make('CartPole-v1', render_mode = "human")
+            self.env = gym.make('FrozenLake-v1', desc=None, map_name="4x4", is_slippery=False, render_mode = 'human')
         else:
-            self.env = gym.make('CartPole-v1')
+            self.env = gym.make('FrozenLake-v1', desc=None, map_name="4x4", is_slippery=False)
+
+
         
         self.observation, info = self.env.reset()
+        self.actionSpaceSize = self.env.action_space.n
+        self.stateSpaceSize = self.env.observation_space.n
         
     def step(self, action):
         self.observation, reward, terminated, truncated, info = self.env.step(action)

@@ -13,7 +13,7 @@ class Utility():
         plt.title('Training...')
         plt.xlabel('Episode')
         plt.ylabel('Duration')
-        # plt.plot(values)
+        plt.plot(values)
 
         movingAverage = self.getMovingAverage(period, values)
         plt.plot(movingAverage)    
