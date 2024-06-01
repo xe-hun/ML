@@ -1,31 +1,44 @@
 import matplotlib.pyplot as plt
+import numpy as np
+is_ipython = 'inline' in plt.get_backend()
+if is_ipython: from IPython import display
 
 class Utility():
     def __init__(self):
         pass
+        
+    def plot(self, period, values):
+        plt.figure(2)
+        plt.clf()        
+        plt.title('Training...')
+        plt.xlabel('Episode')
+        plt.ylabel('Duration')
+        # plt.plot(values)
+
+        movingAverage = self.getMovingAverage(period, values)
+        plt.plot(movingAverage)    
+        plt.pause(0.001)
+        print("Episode", len(values), "\n", \
+            period, "episode moving avg:", movingAverage[-1])
+        if is_ipython: display.clear_output(wait=True)
+
+    def getMovingAverage(self, period:int, values:list):
+        cumulativeSum = np.cumsum(values)
+        movingAverage = np.zeros_like(values)
+        
+        for i in range(len(values)):
+            if (i < period):
+                movingAverage[i] = cumulativeSum[i] / (i + 1)
+            else:
+                movingAverage[i] = (cumulativeSum[i] - cumulativeSum[i - period]) / period
+                
+        return movingAverage
     
-def plot(values, moving_avg_period):
-    plt.figure(2)
-    plt.clf()        
-    plt.title('Training...')
-    plt.xlabel('Episode')
-    plt.ylabel('Duration')
-    plt.plot(values)
+    def getMovingAverage2(self, period:int, vaules:list):
+        N = len(vaules)
+        movingAverage = np.empty(N)
+        for t in range(N):
+            movingAverage[t] = np.mean(vaules[max(0, t-period):(t+1)])
 
-    moving_avg = get_moving_average(moving_avg_period, values)
-    plt.plot(moving_avg)    
-    plt.pause(0.001)
-    print("Episode", len(values), "\n", \
-        moving_avg_period, "episode moving avg:", moving_avg[-1])
-    if is_ipython: display.clear_output(wait=True)
-
-def get_moving_average(period, values):
-    values = torch.tensor(values, dtype=torch.float)
-    if len(values) >= period:
-        moving_avg = values.unfold(dimension=0, size=period, step=1) \
-            .mean(dim=1).flatten(start_dim=0)
-        moving_avg = torch.cat((torch.zeros(period-1), moving_avg))
-        return moving_avg.numpy()
-    else:
-        moving_avg = torch.zeros(len(values))
-        return moving_avg.numpy()
+        return movingAverage
+                

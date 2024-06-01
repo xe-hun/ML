@@ -5,7 +5,7 @@ import gymnasium as gym
 
 
 class EnvironmentManager:
-    def __init__(self, render):
+    def __init__(self, render=False):
         if render is True:
             self.env = gym.make('CartPole-v1', render_mode = "human")
         else:

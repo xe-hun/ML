@@ -26,11 +26,14 @@ class Policy:
         else:
             return self.getAction(state)
     
-    def train(self, currentState:tuple, nextState:tuple, reward:int):
-        alpha = .001
-        gamma = .08
-        self.Q[currentState] = alpha * (reward + gamma * self.Q[nextState]) 
-        pass
+    def train(self, currentState:tuple, nextState:tuple, reward:int, action:int):
+        if(currentState == nextState):
+            return
+        
+        alpha = .01 #learningRate
+        gamma = .9 #discountFactor
+        self.Q[currentState][action] = self.Q[currentState][action] + alpha * ((reward + gamma * max(self.Q[nextState])) - self.Q[currentState][action]) 
+        
     
     # def updateQValue(self):
     #     pass

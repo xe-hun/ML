@@ -37,8 +37,8 @@ class Agent():
         
 
     def selectAction(self, state:tuple, policy, explorationRate:float)->int:
-        if(explorationRate != None):
-            return policy.getActionWithStrategy(explorationRate, state)
-        else:
+        if(explorationRate is None):
             return policy.getAction(state)
+        else:
+            return policy.getActionWithStrategy(explorationRate, state)
    
