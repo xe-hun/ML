@@ -13,14 +13,14 @@ class Utility():
         plt.title('Training...')
         plt.xlabel('Episode')
         plt.ylabel('Duration')
-        # plt.plot(values)
+        plt.plot(values)
 
-        movingAverage = self.getMovingAverage(period, values)
+        movingAverage = self.getMovingAverage2(period, values)
         plt.plot(movingAverage)    
         plt.pause(0.001)
         print("Episode", len(values), "\n", \
             period, "episode moving avg:", movingAverage[-1])
-        if is_ipython: display.clear_output(wait=True)
+        # if is_ipython: display.clear_output(wait=True)
 
     def getMovingAverage(self, period:int, values:list):
         cumulativeSum = np.cumsum(values)

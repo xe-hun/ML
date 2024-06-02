@@ -2,7 +2,7 @@ import numpy as np
 import random
 class Policy:
     def  __init__(self):
-       pass
+       self.learningRate = .01
     
     def initializeQValues(self, stateSpace, actionSpaceSize:int):
         self.Q = {}
@@ -19,23 +19,25 @@ class Policy:
     def getRandomAction(self)->int:
         return random.randrange(self.actionSpaceSize);
         # return random.choice(list(range(self.numberOfAction)));
-    
-    def getActionWithStrategy(self, explorationRate:float, state:tuple):
+        
+    def setTrainingRate(self, learningRate:float)->int:
+        self.learningRate = learningRate
+        
+        
+    def getActionWithExploration(self, explorationRate:float, state:tuple):
         if(explorationRate > random.random()):
             return self.getRandomAction()
         else:
             return self.getMaxAction(state)
     
     def train(self, currentState:int, nextState:int, reward:int, action:int):
-        if(currentState == nextState):
-            return
+        # if(currentState == nextState):
+        #     return
         
-        alpha = .01 #learningRate
-        gamma = .9 #discountFactor
-        qsetter = self.Q[currentState][action] + alpha * (reward + gamma * max(self.Q[nextState]) - self.Q[currentState][action])
-        # if(reward > 0):
-        #     print(qsetter)
-        self.Q[currentState][action] = qsetter
+        alpha = self.learningRate #learningRate
+        gamma = .999 #discountFactor
+        self.Q[currentState][action] = self.Q[currentState][action] + alpha * (reward + gamma * max(self.Q[nextState]) - self.Q[currentState][action])
+      
         
 
     def randomTieBreakArgmax(self, arr):

@@ -6,6 +6,10 @@ class EpsilonGreedyStrategy():
         self.end = end
         self.decay = decay
     
-    def get_exploration_rate(self, current_step:int)->float:
+    def getExplorationRate(self, currentStep:int)->float:
         return self.end + (self.start - self.end) * \
-            math.exp(-1. * current_step * self.decay)
+            math.exp(-1. * currentStep * self.decay)
+            
+    def chooseAction(self, state, policy, timeStep)->int:
+        explorationRate = self.getExplorationRate(timeStep)
+        return policy.getActionWithExploration(explorationRate, state)

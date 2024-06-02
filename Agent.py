@@ -1,3 +1,4 @@
+from typing import Optional
 import numpy as np
 
 class Agent():
@@ -8,10 +9,15 @@ class Agent():
         # self.num_actions = num_actions
         # self.device = device
         
-        self.cartPositionSpace = np.linspace(-2.4, 2.4, 10)
-        self.cartVelocitySpace = np.linspace(-4, 4, 10)
-        self.poleAngleSpace = np.linspace(-0.20943951, 0.20943951, 10)
-        self.poleAngleVelocitySpace = np.linspace(-4, 4, 10)
+        self.cartPositionSpace = np.linspace(-2.4, 2.4, 20)
+        self.cartVelocitySpace = np.linspace(-4, 4, 20)
+        self.poleAngleSpace = np.linspace(-0.20943951, 0.20943951, 20)
+        self.poleAngleVelocitySpace = np.linspace(-4, 4, 20)
+        
+        # self.cartPositionSpace = np.linspace(-2.4, 2.4, 8)
+        # self.cartVelocitySpace = np.linspace(-4, 4, 5)
+        # self.poleAngleSpace = np.linspace(-0.20943951, 0.20943951, 3)
+        # self.poleAngleVelocitySpace = np.linspace(-4, 4, 3)
         # self.stateSpace = []
         
         
@@ -36,9 +42,9 @@ class Agent():
         return (cartPosition, cartVelocity, poleAngle, poleAngleVelocity)
         
 
-    def selectAction(self, state:tuple, policy, explorationRate:float)->int:
-        if(explorationRate is None):
-            return policy.getAction(state)
-        else:
-            return policy.getActionWithStrategy(explorationRate, state)
+    # def selectAction(self, state:tuple, policy, explorationRate:Optional[float] = None)->int:
+    #     if(explorationRate is None):
+    #         return policy.getMaxAction(state)
+    #     else:
+    #         return policy.getActionWithStrategy(explorationRate, state)
    
