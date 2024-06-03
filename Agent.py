@@ -9,10 +9,10 @@ class Agent():
         # self.num_actions = num_actions
         # self.device = device
         
-        self.cartPositionSpace = np.linspace(-2.4, 2.4, 20)
-        self.cartVelocitySpace = np.linspace(-4, 4, 20)
-        self.poleAngleSpace = np.linspace(-0.20943951, 0.20943951, 20)
-        self.poleAngleVelocitySpace = np.linspace(-4, 4, 20)
+        self.cartPositionSpace = np.linspace(-2.4, 2.4, 10)
+        self.cartVelocitySpace = np.linspace(-4, 4, 5)
+        self.poleAngleSpace = np.linspace(-0.20943951, 0.20943951, 5)
+        self.poleAngleVelocitySpace = np.linspace(-4, 4, 5)
         
         # self.cartPositionSpace = np.linspace(-2.4, 2.4, 8)
         # self.cartVelocitySpace = np.linspace(-4, 4, 5)

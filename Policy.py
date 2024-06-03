@@ -2,7 +2,7 @@ import numpy as np
 import random
 class Policy:
     def  __init__(self):
-       self.learningRate = .01
+       self.learningRate = .005
     
     def initializeQValues(self, stateSpace, actionSpaceSize:int):
         self.Q = {}
