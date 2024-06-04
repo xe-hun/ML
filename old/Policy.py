@@ -2,7 +2,7 @@ import numpy as np
 import random
 class Policy:
     def  __init__(self):
-       self.learningRate = .005
+       self.learningRate = .001
     
     def initializeQValues(self, stateSpace, actionSpaceSize:int):
         self.Q = {}
@@ -35,7 +35,8 @@ class Policy:
         #     return
         
         alpha = self.learningRate #learningRate
-        gamma = .999 #discountFactor
+        gamma = .9 #discountFactor
+        # gamma = .999 #discountFactor
         self.Q[currentState][action] = self.Q[currentState][action] + alpha * (reward + gamma * max(self.Q[nextState]) - self.Q[currentState][action])
       
         

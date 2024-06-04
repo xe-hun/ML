@@ -12,7 +12,6 @@ class EnvironmentManager:
             self.env = gym.make('CartPole-v1')
         
         self.observation, info = self.env.reset()
-        
         self.actionSpaceSize = self.env.action_space.n
         # self.ObservationSpaceSize = self.env.observation_space.n
         
@@ -22,7 +21,7 @@ class EnvironmentManager:
        
     
     def reset(self):
-        self.env.reset()
+        self.observation, info = self.env.reset()
        
         
     def close(self):
