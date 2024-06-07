@@ -40,6 +40,9 @@ class LinearFunctionApprxPolicy(Base):
         
         # get the target
         
+        # train
+        
+        
         
         
         
@@ -58,5 +61,14 @@ class LinearFunctionApprxPolicy(Base):
         
         
         
-        
+class LinearFunctionApproximator:
+    def __init__(self, numFeatures, numActions) -> None:
+        self.numFeatures = numFeatures
+        self.numActions = numActions
+        self.b = np.random.random()
+        self.weights = np.random.randn(numFeatures, numActions)
+    
+    
+    def approximate(self, features):
+        return np.dot(features, self.weights)
   
