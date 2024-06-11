@@ -15,7 +15,11 @@ class EnvironmentManager:
         
         self.observation, info = self.env.reset()
         self.actionSpaceSize = self.env.action_space.n
+<<<<<<< HEAD:EnvironmentManager.py
         self.stateSpaceSize = self.env.observation_space.n
+=======
+        # self.ObservationSpaceSize = self.env.observation_space.n
+>>>>>>> 84fc84e5116c5a408118280e4bd67db94f1dd77f:old/EnvironmentManager.py
         
     def step(self, action):
         self.observation, reward, terminated, truncated, info = self.env.step(action)
@@ -23,7 +27,7 @@ class EnvironmentManager:
        
     
     def reset(self):
-        self.env.reset()
+        self.observation, info = self.env.reset()
        
         
     def close(self):

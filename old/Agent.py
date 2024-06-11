@@ -1,11 +1,32 @@
+<<<<<<< HEAD:Agent.py
 
 
+=======
+>>>>>>> 84fc84e5116c5a408118280e4bd67db94f1dd77f:old/Agent.py
 from typing import Optional
 import numpy as np
 
 class Agent():
     def __init__(self):
+<<<<<<< HEAD:Agent.py
        pass
+=======
+        # self.current_step = 0
+        # self.strategy = strategy
+        # self.num_actions = num_actions
+        # self.device = device
+        
+        self.cartPositionSpace = np.linspace(-2.4, 2.4, 10)
+        self.cartVelocitySpace = np.linspace(-4, 4, 5)
+        self.poleAngleSpace = np.linspace(-0.20943951, 0.20943951, 5)
+        self.poleAngleVelocitySpace = np.linspace(-4, 4, 5)
+        
+        # self.cartPositionSpace = np.linspace(-2.4, 2.4, 8)
+        # self.cartVelocitySpace = np.linspace(-4, 4, 5)
+        # self.poleAngleSpace = np.linspace(-0.20943951, 0.20943951, 3)
+        # self.poleAngleVelocitySpace = np.linspace(-4, 4, 3)
+        # self.stateSpace = []
+>>>>>>> 84fc84e5116c5a408118280e4bd67db94f1dd77f:old/Agent.py
         
         
     def initializeState(self, stateSpaceSize):
@@ -15,6 +36,7 @@ class Agent():
     def getState(self, observation:int)->int:
         return observation
 
+<<<<<<< HEAD:Agent.py
     def selectAction(self, state:int, policy, explorationRate:Optional[float] = None)->int:
         if(explorationRate is None):
             return policy.getMaxAction(state)
@@ -75,4 +97,11 @@ class Agent():
 #             return policy.getAction(state)
 #         else:
 #             return policy.getActionWithStrategy(explorationRate, state)
+=======
+    # def selectAction(self, state:tuple, policy, explorationRate:Optional[float] = None)->int:
+    #     if(explorationRate is None):
+    #         return policy.getMaxAction(state)
+    #     else:
+    #         return policy.getActionWithStrategy(explorationRate, state)
+>>>>>>> 84fc84e5116c5a408118280e4bd67db94f1dd77f:old/Agent.py
    
